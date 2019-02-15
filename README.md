@@ -1,2 +1,2 @@
 # AdvancedNodeStarter
-Starting project for a course on Advanced Node @ Udemy
+Setting up a more complex express server, forked from https://github.com/StephenGrider/AdvancedNodeStarter
