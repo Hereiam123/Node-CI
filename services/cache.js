@@ -38,7 +38,7 @@ mongoose.Query.prototype.exec = async function() {
   //Get mongo db call and apply to redis
   const result = await exec.apply(this, arguments);
 
-  client.hset(this._hashKey, key, JSON.stringify(result), "EX", 10);
+  client.hmset(this._hashKey, key, JSON.stringify(result), "EX", 10);
   return result;
 };
 
