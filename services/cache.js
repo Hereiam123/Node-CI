@@ -13,15 +13,19 @@ mongoose.Query.prototype.exec = async function() {
       collection: this.mongooseCollection.name
     })
   );
-  console.log(key);
+
   //Check if we have value for the key in redis
   const cacheValue = await client.get(key);
 
   if (cacheValue) {
-    console.log(cacheValue);
+    const doc = JSON.parse(cacheValue);
+    return Array.isArray(doc)
+      ? doc.map(d => new this.model(d))
+      : new this.model(doc);
   }
 
   //Get mongo db call and apply to redis
   const result = await exec.apply(this, arguments);
-  console.log(result);
+  client.set(key, JSON.stringify(result));
+  return result;
 };
