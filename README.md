@@ -1,2 +1,3 @@
-# AdvancedNodeStarter
-Setting up a more complex express server, forked from https://github.com/StephenGrider/AdvancedNodeStarter
+# jestNode
+
+Implementing Jest into project at: https://github.com/Hereiam123/AdvancedNodeStarter
