@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "jest",
     "start": "node index.js",
     "server": "nodemon index.js --ignore tests",
     "client": "npm run start --prefix client",
@@ -11,7 +12,7 @@
     "build": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "heroku-postbuild": "npm run build"
   },
-  "author": "",
+  "author": "Brian De Maio",
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.403.0",
