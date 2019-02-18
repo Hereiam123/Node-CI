@@ -16,3 +16,9 @@ test("The header has the correct text", async () => {
   const text = await page.$eval("a.brand-logo", el => el.innerHTML);
   expect(text).toEqual("Blogster");
 });
+
+test("Click on Google Login link and goes to Google Oauth", async () => {
+  await page.click(".right a");
+  const pageUrl = page.url();
+  expect(pageUrl).toMatch(/accounts\.google\.com/);
+});
