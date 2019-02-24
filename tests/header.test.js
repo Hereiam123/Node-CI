@@ -44,4 +44,7 @@ test.only("When signed in, shows logged out button", async () => {
   await page.setCookie({ name: "session", value: sessionString });
   await page.setCookie({ name: "session.sig", value: sig });
   await page.goto("localhost:3000");
+
+  const text = await page.$eval('a[href="/auth/logout"]', el => el.innerHTML);
+  expect(text).toEqual("Logout");
 });
