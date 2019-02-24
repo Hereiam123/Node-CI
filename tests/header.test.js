@@ -25,7 +25,7 @@ test("Click on Google Login link and goes to Google Oauth", async () => {
   expect(pageUrl).toMatch(/accounts\.google\.com/);
 });
 
-test("When signed in, shows logged out button", async () => {
+test("When signed in, shows log out button", async () => {
   const user = await userFactory();
   const { session, sig } = sessionFactory(user);
 
