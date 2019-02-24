@@ -23,7 +23,7 @@ test("Click on Google Login link and goes to Google Oauth", async () => {
   expect(pageUrl).toMatch(/accounts\.google\.com/);
 });
 
-test.only("When signed in, shows logged out button", async () => {
+test("When signed in, shows logged out button", async () => {
   const id = "5c677a7d56e7fd228c098814";
 
   const Buffer = require("safe-buffer").Buffer;
@@ -44,6 +44,7 @@ test.only("When signed in, shows logged out button", async () => {
   await page.setCookie({ name: "session", value: sessionString });
   await page.setCookie({ name: "session.sig", value: sig });
   await page.goto("localhost:3000");
+  await page.waitFor('a[href="/auth/logout"]');
 
   const text = await page.$eval('a[href="/auth/logout"]', el => el.innerHTML);
   expect(text).toEqual("Logout");
