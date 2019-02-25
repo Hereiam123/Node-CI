@@ -10,9 +10,14 @@ afterEach(async () => {
   await page.close();
 });
 
-test.only("When logged in, we can see blog creation form", async () => {
-  await page.login();
-  await page.click("a.btn-floating");
-  const text = await page.getContentsOf("form .title label");
-  expect(text).toEqual("Blog Title");
+describe("When logged in", async () => {
+  beforeEach(async () => {
+    await page.login();
+    await page.click("a.btn-floating");
+  });
+
+  test("We can see blog creation form", async () => {
+    const text = await page.getContentsOf("form .title label");
+    expect(text).toEqual("Blog Title");
+  });
 });
