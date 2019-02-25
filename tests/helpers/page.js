@@ -48,6 +48,23 @@ class Page {
       }).then(res => res.json());
     }, path);
   }
+
+  post(path, data) {
+    return this.page.evaluate(
+      async (postPath, postData) => {
+        return fetch(postPath, {
+          method: "POST",
+          credentials: "same-origin",
+          header: {
+            "Content-Type": "application/json",
+            body: JSON.stringify(postData)
+          }
+        }).then(res => res.json());
+      },
+      path,
+      data
+    );
+  }
 }
 
 module.exports = Page;

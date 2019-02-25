@@ -58,15 +58,9 @@ describe("When logged in", async () => {
 
 describe("When not logged in", async () => {
   test("cannot create blog post", async () => {
-    const result = await page.evaluate(async () => {
-      return fetch("/api/blogs", {
-        method: "POST",
-        credentials: "same-origin",
-        header: {
-          "Content-Type": "application/json",
-          body: JSON.stringify({ title: "My Title", content: "My Content" })
-        }
-      }).then(res => res.json());
+    const result = await page.post("/api/blogs/", {
+      title: "My Title",
+      content: "My Content"
     });
     expect(result).toEqual({ error: "You must log in!" });
   });
