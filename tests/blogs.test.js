@@ -55,3 +55,18 @@ describe("When logged in", async () => {
     });
   });
 });
+
+describe("When not logged in", async () => {
+  test("cannot create blog post", async () => {
+    page.evaluate(() => {
+      fetch("/api/blogs", {
+        method: "POST",
+        credentials: "same-origin",
+        header: {
+          "Content-Type": "application/json",
+          body: JSON.stringify({ title: "My Title", content: "My Content" })
+        }
+      }).then(res => res.json());
+    });
+  });
+});
