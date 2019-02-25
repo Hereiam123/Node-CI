@@ -58,8 +58,8 @@ describe("When logged in", async () => {
 
 describe("When not logged in", async () => {
   test("cannot create blog post", async () => {
-    page.evaluate(() => {
-      fetch("/api/blogs", {
+    const result = await page.evaluate(() => {
+      return fetch("/api/blogs", {
         method: "POST",
         credentials: "same-origin",
         header: {
@@ -68,5 +68,19 @@ describe("When not logged in", async () => {
         }
       }).then(res => res.json());
     });
+    expect(result).toEqual({ error: "You must log in!" });
+  });
+
+  test("cannot get blog list", async () => {
+    const result = await page.evaluate(() => {
+      return fetch("/api/blogs", {
+        method: "GET",
+        credentials: "same-origin",
+        header: {
+          "Content-Type": "application/json"
+        }
+      }).then(res => res.json());
+    });
+    expect(result).toEqual({ error: "You must log in!" });
   });
 });
