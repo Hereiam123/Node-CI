@@ -36,6 +36,18 @@ class Page {
   async getContentsOf(selector) {
     return this.page.$eval(selector, el => el.innerHTML);
   }
+
+  get(path) {
+    return this.page.evaluate(async getPath => {
+      return fetch(getPath, {
+        method: "GET",
+        credentials: "same-origin",
+        header: {
+          "Content-Type": "application/json"
+        }
+      }).then(res => res.json());
+    }, path);
+  }
 }
 
 module.exports = Page;
