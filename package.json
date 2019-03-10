@@ -20,7 +20,7 @@
   "author": "Brian De Maio",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.403.0",
+    "aws-sdk": "^2.418.0",
     "body-parser": "^1.17.2",
     "concurrently": "^3.6.1",
     "cookie-session": "^2.0.0-beta.2",
